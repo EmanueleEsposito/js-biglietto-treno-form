@@ -1,5 +1,6 @@
 const form = document.getElementById('form');
 function salvaInformazioniUtente(){
+
   let km=  document.getElementById('km-input').value;
   console.log(km)
   let eta =document.getElementById('eta-input').value;
@@ -7,6 +8,11 @@ function salvaInformazioniUtente(){
   calcolaPrezzoBiglietto(km,prezzoAlKm,eta)
   let prezzoBiglietto = calcolaPrezzoBiglietto(km,prezzoAlKm,eta);
   console.log(prezzoBiglietto)
+  
+  const ul = document.getElementById('items');
+  const li = document.createElement('li');
+  li.innerHTML = "L'ETÀ INSERITA É DI  "+eta+ " ANNI -- I KM DA PERCORRERE SONO "+km+" -- IL PREZZO DEL BIGLIETTO É DI "+prezzoBiglietto.toFixed(2)+"€";
+  ul.appendChild(li);
 
 }
 form.addEventListener('submit', salvaInformazioniUtente);
@@ -17,6 +23,7 @@ const scontoMinorenni = 0.20;
 const scontoOver65 = 0.40;
 let kmInput;
 let etaInput;
+
 
 function calcolaPrezzoBiglietto(kmInput,prezzoAlKm,etaInput){
     if (etaInput <= 18) {
